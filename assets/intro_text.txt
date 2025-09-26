@@ -1,0 +1,4 @@
+Hello, my name is Shrikanth. 
+I am a Python Developer with experience in Data Analysis, Machine Learning, and Cloud technologies. 
+I enjoy building solutions that automate tasks and deliver insights. 
+Thank you for watching my intro!
