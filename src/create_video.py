@@ -31,18 +31,17 @@ def make_text_image(text, size=VIDEO_SIZE, fontsize=FONT_SIZE, fontcolor=FONT_CO
     draw = ImageDraw.Draw(img)
 
     # Try to load the font
-# Try to load the font
-try:
-    font = ImageFont.truetype(font_path, fontsize)
-except:
-    font = ImageFont.load_default()
+    try:
+        font = ImageFont.truetype(font_path, fontsize)
+    except:
+        font = ImageFont.load_default()
 
-# Helper function to get text size
-def get_text_size(draw, text, font):
-    bbox = draw.textbbox((0, 0), text, font=font)
-    width = bbox[2] - bbox[0]
-    height = bbox[3] - bbox[1]
-    return width, height
+    # Helper function to get text size
+    def get_text_size(draw, text, font):
+        bbox = draw.textbbox((0, 0), text, font=font)
+        width = bbox[2] - bbox[0]
+        height = bbox[3] - bbox[1]
+        return width, height
 
     lines = []
     words = text.split()
@@ -64,6 +63,8 @@ def get_text_size(draw, text, font):
         w, h = get_text_size(draw, l, font)
         draw.text(((size[0]-w)//2, current_h), l, font=font, fill=fontcolor)
         current_h += h
+    
+    return img
 
 
 # ====================== Main ======================
@@ -81,7 +82,10 @@ def main():
     intro_text = load_intro_text(TEXT_PATH)
 
     # Create text image clip
-    text_clip = make_text_image(intro_text, size=image_clip.size)
+    text_img = make_text_image(intro_text, size=image_clip.size)
+    # Convert PIL Image to numpy array for ImageClip
+    text_array = np.array(text_img)
+    text_clip = ImageClip(text_array, transparent=True)
     text_clip = text_clip.set_duration(audio_duration).set_position("center")
 
     # Combine photo + text + audio

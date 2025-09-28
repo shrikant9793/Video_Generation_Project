@@ -1,9 +1,8 @@
-moviepy==1.0.3
-opencv-python==4.10.0.84
-pydub==0.25.1
-numpy==1.26.4
-Pillow==10.4.0
-matplotlib==3.9.2
+moviepy>=1.0.3
+pillow>=10.0.0
+numpy>=1.24.0
+opencv-python>=4.8.0
+pydub>=0.25.1
 # Core video processing
 moviepy
 opencv-python
@@ -13,15 +12,13 @@ pillow
 # AI/ML for facial animation
 torch
 torchvision
-face-recognition
-mediapipe
+
 
 # Audio processing
 librosa
 scipy
-wave
+mysqlclient
 
 # Additional utilities
 requests
 gdown  # for downloading models
-cmake
